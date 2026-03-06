@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChainSure SaaS — Admin Dashboard</title>
+    <meta name="description" content="ChainSure multi-tenant insurance administration dashboard">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- ─── Sidebar ─── -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">ChainSure</span>
+            </div>
+            <span class="badge">SaaS</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="overview" id="nav-overview">
+                <span class="nav-icon">📊</span> Overview
+            </a>
+            <a href="#" class="nav-item" data-section="tenants" id="nav-tenants">
+                <span class="nav-icon">🏢</span> Tenants
+            </a>
+            <a href="#" class="nav-item" data-section="policies" id="nav-policies">
+                <span class="nav-icon">📜</span> Policies
+            </a>
+            <a href="#" class="nav-item" data-section="claims" id="nav-claims">
+                <span class="nav-icon">📋</span> Claims
+            </a>
+            <a href="#" class="nav-item" data-section="pool" id="nav-pool">
+                <span class="nav-icon">💰</span> Liquidity Pool
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="network-badge">
+                <span class="dot dot-live"></span> Base Sepolia
+            </div>
+        </div>
+    </aside>
+
+    <!-- ─── Main Content ─── -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 class="page-title" id="page-title">Platform Overview</h1>
+            <div class="top-bar-actions">
+                <input type="text" class="search-input" placeholder="Search..." id="search-input">
+                <button class="btn btn-primary" id="btn-add-tenant">+ New Tenant</button>
+            </div>
+        </header>
+
+        <!-- ─── Overview Section ─── -->
+        <section class="section" id="section-overview">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Tenants</div>
+                    <div class="stat-value" id="stat-tenants">0</div>
+                    <div class="stat-change positive">Active partners</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Active Policies</div>
+                    <div class="stat-value" id="stat-policies">0</div>
+                    <div class="stat-change positive">Across all tenants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Claims</div>
+                    <div class="stat-value" id="stat-claims">0</div>
+                    <div class="stat-change">Filed this month</div>
+                </div>
+                <div class="stat-card accent">
+                    <div class="stat-label">Total Value Locked</div>
+                    <div class="stat-value" id="stat-tvl">$0</div>
+                    <div class="stat-change">USDC in pools</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Recent Activity</h2>
+                <div class="activity-list" id="activity-list">
+                    <div class="activity-item">
+                        <span class="activity-icon">🆕</span>
+                        <div class="activity-content">
+                            <strong>Platform initialized</strong>
+                            <p>ChainSure SaaS dashboard is ready. Add your first tenant to begin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── Tenants Section ─── -->
+        <section class="section hidden" id="section-tenants">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Insurance Partners</h2>
+                    <button class="btn btn-primary btn-sm" id="btn-add-tenant-2">+ Add Tenant</button>
+                </div>
+                <table class="data-table" id="tenants-table">
+                    <thead>
+                        <tr>
+                            <th>Tenant ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Contracts</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tenants-tbody">
+                        <tr>
+                            <td colspan="6" class="empty-state">No tenants registered yet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ─── Policies Section ─── -->
+        <section class="section hidden" id="section-policies">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Policies</h2>
+                </div>
+                <table class="data-table" id="policies-table">
+                    <thead>
+                        <tr>
+                            <th>Policy ID</th>
+                            <th>Tenant</th>
+                            <th>Holder</th>
+                            <th>Type</th>
+                            <th>Premium</th>
+                            <th>Coverage</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="policies-tbody">
+                        <tr>
+                            <td colspan="7" class="empty-state">No policies found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ─── Claims Section ─── -->
+        <section class="section hidden" id="section-claims">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Claims</h2>
+                </div>
+                <table class="data-table" id="claims-table">
+                    <thead>
+                        <tr>
+                            <th>Claim ID</th>
+                            <th>Policy ID</th>
+                            <th>Claimant</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="claims-tbody">
+                        <tr>
+                            <td colspan="6" class="empty-state">No claims filed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ─── Pool Section ─── -->
+        <section class="section hidden" id="section-pool">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Pool Balance</div>
+                    <div class="stat-value" id="pool-balance">$0.00</div>
+                    <div class="stat-change">Available USDC</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Premiums</div>
+                    <div class="stat-value" id="pool-premiums">$0.00</div>
+                    <div class="stat-change positive">Collected</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Payouts</div>
+                    <div class="stat-value" id="pool-payouts">$0.00</div>
+                    <div class="stat-change">Released</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ─── Add Tenant Modal ─── -->
+    <div class="modal-overlay hidden" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Add New Tenant</h2>
+                <button class="btn-close" id="modal-close">&times;</button>
+            </div>
+            <form id="tenant-form">
+                <div class="form-group">
+                    <label for="input-tenant-id">Tenant ID</label>
+                    <input type="text" id="input-tenant-id" placeholder="e.g. acme-insurance" required pattern="^[a-z0-9-]+$">
+                </div>
+                <div class="form-group">
+                    <label for="input-tenant-name">Company Name</label>
+                    <input type="text" id="input-tenant-name" placeholder="e.g. Acme Insurance Ltd" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-tenant-email">Contact Email</label>
+                    <input type="email" id="input-tenant-email" placeholder="admin@acme.com" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Deploy Tenant</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+    "name": "chainsure-saas",
+    "version": "1.0.0",
+    "description": "ChainSure — Multi-tenant blockchain micro-insurance SaaS on Base",
+    "scripts": {
+        "compile": "hardhat compile",
+        "test": "hardhat test",
+        "deploy:sepolia": "hardhat run scripts/deploy.js --network base_sepolia",
+        "deploy:mainnet": "hardhat run scripts/deploy.js --network base_mainnet",
+        "seed": "hardhat run scripts/seed.js --network base_sepolia"
+    },
+    "dependencies": {
+        "@coinbase/wallet-sdk": "^4.0.0",
+        "@openzeppelin/contracts": "^5.0.0",
+        "dotenv": "^16.3.1",
+        "ethers": "^6.9.0"
+    },
+    "devDependencies": {
+        "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+        "hardhat": "^2.19.0"
+    },
+    "license": "MIT"
+}
